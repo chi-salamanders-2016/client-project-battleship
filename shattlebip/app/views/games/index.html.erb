@@ -1,6 +1,8 @@
 index.html.erb
 
 <h2>Here are all the games you can join!</h2>
-<% @games.each do |game| %>
-  <%= game.name %>
-<% end %>
+  <ul>
+	<% @games.each do |game| %>
+	  <li><%= game.name %></li>
+	<% end %>
+  </ul>
