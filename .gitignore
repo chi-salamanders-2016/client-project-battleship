@@ -19,4 +19,5 @@ shattlebip/Gemfile.lock
 shattlebip/db/data
 shattlebip/logfile
 log/test.log
+shattlebip/log/test.log
 
