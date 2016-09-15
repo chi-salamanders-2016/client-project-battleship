@@ -1,5 +1,12 @@
 require 'rails_helper'
 
-RSpec.describe Game, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe Game do
+
+  let(:game) { Game.new }
+
+  it "is a game object" do
+    expect(game.class).to eq Game
+  end
+  
+
 end
