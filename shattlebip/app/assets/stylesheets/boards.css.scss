@@ -1,0 +1,30 @@
+$cell-side: 40px;
+$cell-margin: 2px;
+
+.ocean-view {
+  display: inline-block;
+  width: 50%;
+  border-right: 2px solid gray;
+}
+
+.grid {
+  margin: 20px;
+
+  .row {
+    clear: both;
+  }
+
+  .cell {
+    display: inline-block;
+    float: left;
+    height: $cell-side;
+    width: $cell-side;
+    margin: $cell-margin;
+    border: 2px solid gray; 
+    }
+    
+  .cell:hover {
+    background: dodgerblue;
+  }
+
+}
