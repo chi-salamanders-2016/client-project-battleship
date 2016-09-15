@@ -2,21 +2,31 @@
 <html>
 <head>
   <title>Shattlebip</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
 </head>
-<%= link_to "Home", root_path %>
-<% if session[:user_id] %>
-	<%= User.find(session[:user_id]).username %>
-	<%= link_to "Log out", session_path(session[:user_id]), :method => :delete %>
-<% else %>
-	<%= link_to "Log in", new_session_path %>
-	<%= link_to "Register", new_user_path %>
-<% end %>
 <body>
+  <header>
+      <nav>
+        <%= link_to "Home", root_path %>
+        <% if session[:user_id] %>
+        	<%= User.find(session[:user_id]).username %>
+        	<%= link_to "Log out", session_path(session[:user_id]), :method => :delete %>
+          <%= link_to "New Game", new_game_path %>
+        <% else %>
+        	<%= link_to "Log in", new_session_path %>
+        	<%= link_to "Register", new_user_path %>
+        <% end %>
+        <%= link_to "About", about_path %>
+        <%= link_to "Leaderboards", leaderboards_path %>
+      </nav>
+  </header>
+  <main>
 
-<%= yield %>
+    <%= yield %>
+
+  </main>
 
 </body>
 </html>
