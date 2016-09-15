@@ -6,6 +6,9 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
+<body>
+  <header>
+      <nav>
 <%= link_to "Home", root_path %>
 <% if session[:user_id] %>
 	<%= User.find(session[:user_id]).username %>
@@ -14,9 +17,13 @@
 	<%= link_to "Log in", new_session_path %>
 	<%= link_to "Register", new_user_path %>
 <% end %>
-<body>
+      </nav>
+  </header>
+  <main>
 
-<%= yield %>
+    <%= yield %>
+
+  </main>
 
 </body>
 </html>
