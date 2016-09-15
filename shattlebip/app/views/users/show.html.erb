@@ -1,0 +1,8 @@
+<h2><%= @user.username %></h2>
+
+<div>
+	<span>Games Won: <%= @user.games_won %></span><br>
+	<span>Win Loss Ratio: <%= @user.win_loss_ratio %></span><br>
+	<span>Shots Fired: <%= @user.total_shots_fired %></span><br>
+	<span>Accuracy of shots: <%= @user.calculate_accuracy %></span>
+</div>
