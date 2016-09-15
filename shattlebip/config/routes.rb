@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
-  resources :games
+  resources :games do
+    resources :boards
+  end
   resources :users, only: [:new, :create, :show]
   resources :sessions, only: [:new, :create, :destroy]
   root 'welcome#index'

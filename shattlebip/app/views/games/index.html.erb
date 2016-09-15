@@ -1,8 +1,28 @@
 index.html.erb
 
-<h2>Here are all the games you can join!</h2>
-  <ul>
-	<% @games.each do |game| %>
-	  <li><%= game.name %></li>
-	<% end %>
-  </ul>
+<% if @joinable_games %>
+  <h2>Here are all the games you can join!</h2>
+    <ul>
+  	  <% @joinable_games.each do |game| %>
+  	    <li><%= game.name %></li>
+  	  <% end %>
+    </ul>
+<% end %>
+
+<% if @initiated_games %>
+  <h2>Here are all the games you are waiting for people to join!</h2>
+    <ul>
+  	  <% @initiated_games.each do |game| %>
+  	    <li><%= game.name %></li>
+  	  <% end %>
+    </ul>
+<% end %>
+
+<% if @games_in_progress %>
+  <h2>Here are all the games you are waiting for people to join!</h2>
+    <ul>
+  	  <% @games_in_progress.each do |game| %>
+  	    <li><%= game.name %></li>
+  	  <% end %>
+    </ul>
+<% end %>
