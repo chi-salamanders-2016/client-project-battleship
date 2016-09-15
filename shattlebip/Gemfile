@@ -37,7 +37,8 @@ group :development, :test do
   gem 'byebug'
   gem 'rspec-rails', '~> 3.5'
   gem 'capybara'
-  gem 'rails-footnotes', '~> 4.0'
+	gem 'rails-footnotes', '~> 4.0'
+  gem 'pry-rails'
 end
 
 group :development do
