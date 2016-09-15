@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :create, :show]
   resources :sessions, only: [:new, :create, :destroy]
   resources :boards, only: [:new, :create]
+  resources :leaderboards, only: [:index]
 
   root 'welcome#index'
 
