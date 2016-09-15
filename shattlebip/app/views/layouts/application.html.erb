@@ -9,13 +9,14 @@
 <body>
   <header>
       <nav>
-          <% if session[:user_id] %>
-            <%= User.find(session[:user_id]).username %>
-            <%= link_to "Log out", session_path(session[:user_id]), :method => :delete %>
-          <% else %>
-            <%= link_to "Log in", new_session_path %>
-            <%= link_to "Register", new_user_path %>
-          <% end %>
+<%= link_to "Home", root_path %>
+<% if session[:user_id] %>
+	<%= User.find(session[:user_id]).username %>
+	<%= link_to "Log out", session_path(session[:user_id]), :method => :delete %>
+<% else %>
+	<%= link_to "Log in", new_session_path %>
+	<%= link_to "Register", new_user_path %>
+<% end %>
       </nav>
   </header>
   <main>
