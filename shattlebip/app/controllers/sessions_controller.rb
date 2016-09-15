@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
 		authorized_user = User.find_by(email: params[:email]).try(:authenticate, params[:password]) 
 		if authorized_user
 			session[:user_id]= authorized_user.id
-			redirect_to authorized_user
+			redirect_to authorized_user, notice: "success"
 		else
 			@error = "email or password is incorrect"
 			render :new
