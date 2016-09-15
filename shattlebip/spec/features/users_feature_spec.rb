@@ -74,4 +74,32 @@ feature "register a user" do
     	end
   	end
   end
+
+  feature 'User page stats' do
+    context 'User page properly displays stats' do
+      scenario 'The user can see how many games they have won' do
+        user2 = User.create(username: "User2", email: "User2@gmail.com", password: "password1234")
+        visit user_path(user2)
+        expect(page).to have_content user2.games_won
+      end
+
+      scenario 'The user can see their win lose ratio' do
+        user2 = User.create(username: "User2", email: "User2@gmail.com", password: "password1234")
+        visit user_path(user2)
+        expect(page).to have_content user2.win_loss_ratio
+      end
+
+      scenario 'User page displays total shots of the user' do
+        user2 = User.create(username: "User2", email: "User2@gmail.com", password: "password1234")
+        visit user_path(user2)
+        expect(page).to have_content user2.total_shots_fired
+      end
+
+      scenario 'User page displays accuracy of the user' do
+        user2 = User.create(username: "User2", email: "User2@gmail.com", password: "password1234")
+        visit user_path(user2)
+        expect(page).to have_content user2.calculate_accuracy
+      end
+    end
+  end
 end
