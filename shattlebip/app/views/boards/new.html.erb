@@ -1,13 +1,19 @@
-<section class="">
+<%# stylesheet_link_tag params[:controller] %>
+
+<section class="ocean-view">
 
 <div class="grid">
 
 <% 0.upto 9 do |row| %>
 
-<div class="row_<%= row %>" >
+<div class="row r_<%= row %>" >
 
     <% 0.upto 9 do |column| %>
-        <div class="column_<%= column %>" ></div>
+        <div class="col c_<%= column %>" >
+          <div class="cell" id="cell_<%= row %><%= column %>">
+            <span style="color:lightgrey"><%= row %><%= column %></span>
+          </div>
+        </div>
     <% end %>
 
 </div>
