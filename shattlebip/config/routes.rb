@@ -5,8 +5,9 @@ Rails.application.routes.draw do
   end
   resources :users, only: [:new, :create, :show]
   resources :sessions, only: [:new, :create, :destroy]
+  resources :boards, only: [:new, :create]
+  resources :leaderboards, only: [:index]
   
-
   root 'games#index'
 
   get '/about' => 'about#index'

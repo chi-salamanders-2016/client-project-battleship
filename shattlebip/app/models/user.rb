@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
 
   def win_loss_ratio
   	#change this later to acutal method
-  	return "48.5%"	#returns a string of win loss ratio
+  	return 48.5	#returns a decimal of win loss ratio
   end
 
   def total_shots_fired
@@ -21,6 +21,6 @@ class User < ActiveRecord::Base
 
   def calculate_accuracy
   	#change this later to acutal method of calculating accuracy
-  	return "3.5%" #returns a string of the percent accuracy
+  	return 3.5 #returns a decimal of percent accuracy
   end
 end
