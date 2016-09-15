@@ -2,7 +2,7 @@ class BoardsController < ApplicationController
 
   def edit
 
-    @boats = %w(carrier battleship cruiser submarine destroyer)
+    @boats = Board.init_fleet
 
   end
 
