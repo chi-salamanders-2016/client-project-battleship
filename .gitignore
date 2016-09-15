@@ -8,9 +8,12 @@
 /.bundle
 
 # Ignore all logfiles and tempfiles.
-/log/*
+*/log/*
 !/log/.keep
-/tmp
+*/tmp
 
 # ShattleBip
 schema.rb
+shattlebip/Gemfile.lock
+shattlebip/db/data
+shattlebip/logfile
