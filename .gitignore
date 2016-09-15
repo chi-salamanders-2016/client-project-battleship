@@ -13,7 +13,10 @@
 */tmp
 
 # ShattleBip
+.log
 schema.rb
 shattlebip/Gemfile.lock
 shattlebip/db/data
 shattlebip/logfile
+log/test.log
+
