@@ -1,0 +1,21 @@
+shattlebip/Gemfile.lock
+
+# Ignore bundler config.
+/.bundle
+
+# Ignore all logfiles and tempfiles.
+/log/*
+!/log/.keep
+/tmp
+
+# Shattlebip
+schema.rb
+
+
+config/database.yml
+db/data
+/db/data
+shattlebip/db/data
+shattlebip/log/development.log
+shattlebip/tmp
+shattlebip/logfile
