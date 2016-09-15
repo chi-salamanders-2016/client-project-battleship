@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   resources :boards, only: [:new, :create]
 
-  root 'welcome#index'
+  root 'games#index'
+
+  get '/about' => 'about#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
