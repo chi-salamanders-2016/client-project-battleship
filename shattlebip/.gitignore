@@ -12,5 +12,6 @@
 !/log/.keep
 /tmp
 
-# ShattleBip
+# Shattlebip
 schema.rb
+*.lock
