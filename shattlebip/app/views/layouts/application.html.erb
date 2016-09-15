@@ -6,6 +6,9 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
+<% if session[:user_id] %>
+	<%= link_to "Log out", session_path(session[:user_id]), :method => :delete %>
+<% end %>
 <body>
 
 <%= yield %>
