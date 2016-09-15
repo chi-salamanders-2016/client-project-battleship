@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe "User" do
+describe User do
   context 'On valid user creation' do
     let(:user) {User.new(username: "Test Person", email: "Test@Test.com", password: "password1234")}
 
@@ -31,6 +31,16 @@ describe "User" do
     it "doesnt create user if password is less than 6 characters" do
       User.create(username: "Test Person", email: "Test@Test.com", password: "pass")
       expect(User.count).to eq 0
+    end
+  end
+
+  context 'Methods' do
+    it 'calculates games won' do
+      user2 = double(username: "User2", email: "User2@gmail.com", password: "password1234")
+      allow(user2).to receive(:games_won).and_return(10)
+      # user2 = User.new(username: "User2", email: "User2@gmail.com", password: "password1234")
+      # allow_any_instance_of(User).to receive(:games_won).and_return(won_games)
+      expect(user2.games_won).to eq 10
     end
   end
 end
