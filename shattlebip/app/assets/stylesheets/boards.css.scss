@@ -21,6 +21,10 @@ $cell-margin: 2px;
     width: $cell-side;
     margin: $cell-margin;
     border: 2px solid gray; 
+    }
+    
+  .cell:hover {
+    background: dodgerblue;
   }
 
 }
