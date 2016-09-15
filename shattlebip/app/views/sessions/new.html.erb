@@ -1,0 +1,7 @@
+<%= @error %>
+<%= simple_form_for :sessions, { url: sessions_path } do |f| %>
+	<%= f.error_notification %>
+  <%= f.input :email, input_html: { name: "email" } %>
+  <%= f.input :password, input_html: { name: "password" } %>
+  <%= f.button :submit, "Sign In" %>
+<% end %>
