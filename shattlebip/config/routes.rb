@@ -1,12 +1,16 @@
 Rails.application.routes.draw do
 
-  resources :games
+  resources :games do 
+    resources :boards, only: [:new, :create, :edit]
+  end
   resources :users, only: [:new, :create, :show]
   resources :sessions, only: [:new, :create, :destroy]
   resources :boards, only: [:new, :create]
   resources :leaderboards, only: [:index]
+  
+  root 'games#index'
 
-  root 'welcome#index'
+  get '/about' => 'about#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
