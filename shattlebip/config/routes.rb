@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   resources :games do 
-    resources :boards, only: [:new, :create, :edit] do
+    resources :boards, only: [:new, :create, :edit, :show] do
       resources :shots, only: [:create]
     end
   end
@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   resources :boards, only: [:new, :create]
   resources :boats, only: [:create]
   resources :leaderboards, only: [:index]
-  
+
   root 'games#index'
 
   get '/about' => 'about#index'

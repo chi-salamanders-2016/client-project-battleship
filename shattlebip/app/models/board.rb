@@ -27,6 +27,9 @@ class Board < ActiveRecord::Base
     cells
   end
 
+  def fleet_complete?
+    self.boats.length == 5
+  end
 
   def self.eligible_cells(boat_name, cell_id)
     cell_index = cell_id.split('_')[-1].to_i
@@ -45,6 +48,6 @@ class Board < ActiveRecord::Base
   end
 
   def self.fleet_stats
-    boat_names.zip([5,4,3,3,2]).to_h
+    (boat_names.zip([5,4,3,3,2])).to_h
   end
-end 
+end
