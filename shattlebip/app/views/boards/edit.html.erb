@@ -9,8 +9,9 @@
 <div class="row r_<%= row %>" >
 
     <% 0.upto 9 do |column| %>
+
         <div class="col c_<%= column %>" >
-          <div class="cell" id="cell_<%= row %><%= column %>">
+          <div class="<%= cell_class(row, column) %>" id="cell_<%= row %><%= column %>">
 
           </div>
         </div>
@@ -26,8 +27,37 @@
 
 <section class="boat-dock">
 
-<% @boats.each do | boat | %>
-<div class="boat-container"><h3><%= boat %></h3></div>
+<% if flash[:notice] %>
+  <div class="notice"><%= flash[:notice] %></div>
 <% end %>
+
+<% if flash[:alert] %>
+  <div class="notice"><%= flash[:alert] %></div>
+<% end %>
+
+
+<% @boats.each do | b | %>
+  <div class="boat-container <%= 'clickable' unless b.id %> <%= b.name %>">
+  <div><h3><%= b.name %></h3></div>
+
+  <% unless b.id %>
+    <%= form_for b, url: {controller: :boats, method: "post", action: "create"}, class: b.name do |f| %>
+
+      <%= f.hidden_field :name, value: b.name %>
+      <%= f.hidden_field :length, value: b.length %>
+      <%= f.hidden_field :board_id, value: params[:id] %>
+      <%= f.hidden_field :bow_index %>
+      <%= f.hidden_field :stern_index %>
+      <%= f.submit 'place', class: "boat-submit" %>
+    <% end %>
+
+  <% else %>
+  placed!
+  <% end %>
+
+</div> 
+<% end %>
+
+
 
 </section>

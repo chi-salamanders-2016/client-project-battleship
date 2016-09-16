@@ -1,6 +1,14 @@
 $cell-side: 40px;
 $cell-margin: 2px;
 
+$grid-side: $cell-side * 11 + $cell-margin * 20;
+
+$destroyer: tomato;
+$battleship: navy;
+$cruiser: dodgerblue;
+$submarine: darkcyan;
+$carrier: gold;
+
 .ocean-view {
   display: inline-block;
   float: left;
@@ -11,17 +19,35 @@ $cell-margin: 2px;
 .boat-dock {
   float: left;
   padding: 20px;
-  width: 100px;
-
+  width: 10%;
 
   .boat-container {
     margin: 10px auto;
     border: 2px solid gray;
   }
+  .boat-container.clickable.carrier:hover{
+    background: $carrier;
+  }
+  .boat-container.clickable.battleship:hover{
+    background: $battleship;
+  }
+  .boat-container.clickable.cruiser:hover{
+    background: $cruiser;
+  }
+  .boat-container.clickable.submarine:hover{
+    background: $submarine;
+  }
+  .boat-container.clickable.destroyer:hover{
+    background: $destroyer;
+  }
 }
 
 .grid {
+  width: $grid-side;
+  height: $grid-side; 
+  padding: 10px;
   margin: 20px;
+  border: 2px solid lightgray;
 
   .row {
     clear: both;
@@ -35,9 +61,82 @@ $cell-margin: 2px;
     margin: $cell-margin;
     border: 2px solid gray; 
     }
-    
-  .cell:hover {
-    background: dodgerblue;
-  }
+}
 
+.grid.active.carrier {
+  border: 2px solid $carrier;
+
+  .cell:not(.assigned):hover{
+    background: $carrier;
+  }
+}
+.grid.active.battleship {
+  border: 2px solid $battleship;
+
+  .cell:not(.assigned):hover{
+    background: $battleship;
+  }
+}
+.grid.active.cruiser {
+  border: 2px solid $cruiser;
+
+  .cell:not(.assigned):hover{
+    background: $cruiser;
+  }
+}
+.grid.active.destroyer {
+  border: 2px solid $destroyer;
+
+  .cell:not(.assigned):hover{
+    background: $destroyer;
+  }
+}
+.grid.active.submarine {
+  border: 2px solid $submarine;
+
+  .cell:not(.assigned):hover{
+    background: $submarine;
+  }
+}
+
+.cell.assigned.cruiser {
+  background: $cruiser;
+  border: 2px solid darkgray;
+}
+.cell.assigned.destroyer {
+  background: $destroyer;
+  border: 2px solid darkgray;
+}
+.cell.assigned.battleship {
+  background: $battleship;
+  border: 2px solid darkgray;
+}
+.cell.assigned.submarine {
+  background: $submarine;
+  border: 2px solid darkgray;
+}
+.cell.assigned.carrier {
+  background: $carrier;
+  border: 2px solid darkgray;
+}
+
+.cell.eligible.cruiser {
+  background: aliceblue;
+  border: 2px solid $cruiser;
+}
+.cell.eligible.destroyer {
+  background: aliceblue;
+  border: 2px solid $destroyer;
+}
+.cell.eligible.battleship {
+  background: aliceblue;
+  border: 2px solid $battleship;
+}
+.cell.eligible.submarine {
+  background: aliceblue;
+   border: 2px solid $submarine;
+}
+.cell.eligible.carrier {
+  background: aliceblue;
+  border: 2px solid $carrier;
 }

@@ -1,10 +1,9 @@
 class BoardsController < ApplicationController
 
   def edit
-
-    @boats = %w(carrier battleship cruiser submarine destroyer)
-
+    @board = Board.find(params[:id])
+    @boats = @board.get_or_init_fleet
   end
 
-
+  
 end
