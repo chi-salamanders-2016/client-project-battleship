@@ -20,16 +20,16 @@
     <ul>
   	  <% @my_waiting_games.each do |game| %>
   	    <li>
-  	      <%= game.name %>
+  	      <%= link_to game.name, edit_game_board_path(game, game.boards[0]) %>
   	    </li>
   	  <% end %>
     </ul>
 <% end %>
 
-<% if @my_games_in_progress %>
-  <h2>Here are all the games you are waiting for people to join!</h2>
+<% if @my_active_games%>
+  <h2>Here are your active games!</h2>
     <ul>
-  	  <% @my_games_in_progress.each do |game| %>
+  	  <% @my_active_games.each do |game| %>
   	    <li><%= game.name %></li>
   	  <% end %>
     </ul>

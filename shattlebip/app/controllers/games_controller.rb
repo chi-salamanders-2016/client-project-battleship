@@ -18,8 +18,7 @@ class GamesController < ApplicationController
     @board = Board.new
     @my_waiting_games = one_player_games - games_not_init_by_me
     @my_joinable_games = one_player_games - games_init_by_me
-
-    # @my_games_in_progress = two_player_games
+    @my_active_games = my_active_games
     # binding.pry
   end
 
@@ -58,6 +57,13 @@ class GamesController < ApplicationController
       boards_not_init_by_me.map { |board| board.game }
     end
 
+    def my_active_games
+      all_active_boards = two_player_games.map { |game| game.boards }
+      all_active_boards = all_active_boards.flatten
+      my_boards = all_active_boards.select { |board| board.user_id == session[:user_id]}
+      my_active_games = my_boards.map { |board| board.game }
+      my_active_games
+     end
 
     # def initiated_game_boards
     #   # all_games = all_games_awaiting_opponent
