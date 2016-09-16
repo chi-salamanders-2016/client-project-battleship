@@ -7,6 +7,12 @@ class Game < ActiveRecord::Base
   validates :name, presence: true
   #VALIDATIONS FOR ONLY 2 GAMES
 
+  def user_board(user_id)
+  	boards = self.boards
+  	user_board = boards.select { |board| board.user_id == user_id }
+  	user_board
+  end
+
   def total_shots_for_game(user)
     boards = self.boards
     other_board = boards.select {|board| board.user_id != user.id}[0]

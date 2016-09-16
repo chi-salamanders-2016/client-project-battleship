@@ -1,3 +1,35 @@
-HI I AM THE VIEW
 
 <%= render 'ocean_view_grid' %>
+
+<section class="target-view">
+
+<div class="grid">
+  <% 0.upto 9 do |row| %>
+    <div class="row r_<%= row %>" >
+        <% 0.upto 9 do |column| %>
+            <div class="col c_<%= column %>" >
+              <div class="cell" id="cell_<%= row %><%= column %>">
+              </div>
+            </div>
+        <% end %>
+    </div>
+  <% end %>
+
+
+<div class="info-station">
+  <div class="messages">
+    CLICK A CELL TO TARGET
+
+
+  </div>
+
+  <div class="gamestate">
+    <span>shots fired: 10</span>
+    <span>hit %: 0.200</span>
+    <span>targets destroyed: 0</span>
+    <span>destruction progress: 11.7% </span>
+  </div>
+</div>
+
+</div>
+</section>
