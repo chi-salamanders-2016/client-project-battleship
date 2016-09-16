@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   validates :username, presence: true
   validates :email, presence: true
+  validates_format_of :email,:with => /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/
   has_secure_password
   validates :password, :length => { :minimum => 6 }
 
