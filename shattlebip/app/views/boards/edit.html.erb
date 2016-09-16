@@ -36,6 +36,7 @@
 
 
 <% @boats.each do | b | %>
+  <div class="boat-container <%= b.name %>">
   <div><h3><%= b.name %></h3></div>
 
   <% unless b.id %>
@@ -44,18 +45,16 @@
       <%= f.hidden_field :name, value: b.name %>
       <%= f.hidden_field :length, value: b.length %>
       <%= f.hidden_field :board_id, value: params[:id] %>
-      <%= f.text_field :bow_index %>
-      <%= f.text_field :stern_index %>
-      <%= f.button :submit %>
+      <%= f.hidden_field :bow_index %>
+      <%= f.hidden_field :stern_index %>
+      <%= f.submit 'place', class: "boat-submit" %>
     <% end %>
 
   <% else %>
-
   placed!
-
   <% end %>
- 
 
+</div> 
 <% end %>
 
 

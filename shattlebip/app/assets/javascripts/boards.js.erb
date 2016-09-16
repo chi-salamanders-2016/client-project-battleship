@@ -1,0 +1,42 @@
+
+$(document).ready(function(){
+
+var active_boat;
+
+var eligible_cells = function(bow_cell) {
+  console.log('hi!', bow_cell)
+  console.log('stuff is great <%= raw JSON.dump(@boats) %>')
+  return $('.cell')
+}
+
+// get rid of the submit buttons until it is time to click them
+$('form input').hide()
+
+// pick a boat and put some classes on things
+$('.boat-container').on('click', function(){
+
+  active_boat = $(this).attr('class').split(' ')[1]
+  $('.grid').attr('class','grid active').addClass(active_boat)
+
+})
+
+// when the grid is active, and you pick a cell, do a bunch of stuff
+$('.grid .cell').on('click', function(){
+  var chosenCell = $(this)
+  if ($('.grid').hasClass('active')){
+    $(this).addClass('assigned').addClass(active_boat);
+    eligible_cells(this).addClass('eligible')    
+  }
+
+})
+
+
+// when the coordinates are ready, submit the form
+
+$('form.new_boat').on('submit', function(){
+
+
+
+})
+
+})

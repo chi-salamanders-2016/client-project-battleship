@@ -1,7 +1,6 @@
 class BoatsController < ApplicationController
 
   def create
-    p "YOU GOT TO BOATS#CREATE"
     @boat = Boat.new(boat_params)
 
     if @boat.save
@@ -10,7 +9,7 @@ class BoatsController < ApplicationController
       flash[:alert] = "there was a problem. please try to create #{@boat.name} again."
     end
 
-    redirect_to :back
+    redirect_to :back 
   end
 
   private
