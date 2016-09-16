@@ -25,20 +25,19 @@ $carrier: gold;
     margin: 10px auto;
     border: 2px solid gray;
   }
-  .boat-container.carrier:hover{
+  .boat-container.clickable.carrier:hover{
     background: $carrier;
   }
-  .boat-container.battleship:hover{
+  .boat-container.clickable.battleship:hover{
     background: $battleship;
   }
-  .boat-container.cruiser:hover{
+  .boat-container.clickable.cruiser:hover{
     background: $cruiser;
   }
-  .boat-container.submarine:hover{
-    background: $submarine
-;
+  .boat-container.clickable.submarine:hover{
+    background: $submarine;
   }
-  .boat-container.destroyer:hover{
+  .boat-container.clickable.destroyer:hover{
     background: $destroyer;
   }
 }
@@ -119,4 +118,25 @@ $carrier: gold;
 .cell.assigned.carrier {
   background: $carrier;
   border: 2px solid darkgray;
+}
+
+.cell.eligible.cruiser {
+  background: aliceblue;
+  border: 2px solid $cruiser;
+}
+.cell.eligible.destroyer {
+  background: aliceblue;
+  border: 2px solid $destroyer;
+}
+.cell.eligible.battleship {
+  background: aliceblue;
+  border: 2px solid $battleship;
+}
+.cell.eligible.submarine {
+  background: aliceblue;
+   border: 2px solid $submarine;
+}
+.cell.eligible.carrier {
+  background: aliceblue;
+  border: 2px solid $carrier;
 }

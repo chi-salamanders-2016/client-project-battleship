@@ -1,42 +1,97 @@
 
 $(document).ready(function(){
 
-var active_boat;
+var active_boat; 
 
-var eligible_cells = function(bow_cell) {
-  console.log('hi!', bow_cell)
-  console.log('stuff is great <%= raw JSON.dump(@boats) %>')
-  return $('.cell')
+var boats_and_lengths = <%= JSON.dump(Board.fleet_stats) %>
+
+
+var eligible_cells = function(boat, cell_id){
+  cell = cell_id.split('_')[1].split('').map(function(g){return Number(g)})
+  distance = Number(boats_and_lengths[boat]) - 1
+ 
+  var choices = []
+
+  if (cell[0] - distance  >= 0) {
+    choices.push((cell[0]-distance)*10 + cell[1])
+  }
+  if (cell[0] + distance < 10) {
+    choices.push((cell[0]+distance)*10 + cell[1])
+  }
+  if (cell[1] - distance  >= 0) {
+    choices.push((cell[1]-distance) + cell[0]*10)
+  }
+  if (cell[1] + distance < 10) {
+    choices.push((cell[1]+distance) + cell[0]*10)
+  }
+
+  choices = choices.map(function(c){return '#cell_' + c})
+
+  return choices
+
 }
 
 // get rid of the submit buttons until it is time to click them
 $('form input').hide()
 
 // pick a boat and put some classes on things
-$('.boat-container').on('click', function(){
+$('.boat-container.clickable').on('click', function(){
+  active_boat = $(this).attr('class').split(' ')[2]
+  console.log(active_boat)
 
-  active_boat = $(this).attr('class').split(' ')[1]
+  // make the others not clickable 
+  $('.boat-container').removeClass('clickable')
+
   $('.grid').attr('class','grid active').addClass(active_boat)
 
 })
 
 // when the grid is active, and you pick a cell, do a bunch of stuff
 $('.grid .cell').on('click', function(){
-  var chosenCell = $(this)
+
   if ($('.grid').hasClass('active')){
-    $(this).addClass('assigned').addClass(active_boat);
-    eligible_cells(this).addClass('eligible')    
+
+    if ($(this).hasClass('bow')){
+      // add classes to the bow cell to change its color
+      $(this).addClass('assigned').addClass(active_boat);
+
+      // remove eligibility from all of the cells
+      $('.grid .cell').removeClass('eligible').removeClass('bow')
+
+      // add the cell value to the form 
+      var cell_index = $(this).attr('id').split('_')[1]
+      var bow_field = '.boat-container.'+active_boat+' form #boat_bow_index'
+      $(bow_field).val(cell_index)
+
+      // find the candidate stern cells and highlight them
+      var choices = eligible_cells(active_boat, $(this).attr('id'))
+      choices.forEach(function(c) {
+        if (!$(c).hasClass('assigned')){
+          $(c).addClass('stern').addClass('eligible').addClass(active_boat)
+        }
+      })
+    }
+
+    if ($(this).hasClass('stern')){
+
+      // assign the cell and color it
+      $(this).addClass('assigned').addClass(active_boat);
+      
+      // make the grid inactive
+      $('.grid').removeClass('active')
+      $('.grid .cell').removeClass('eligible')
+
+
+      // add the cell value to the form
+      var cell_index = $(this).attr('id').split('_')[1]
+      var stern_field = '.boat-container.'+active_boat+' form #boat_stern_index'
+      $(stern_field).val(cell_index)
+
+      // submit the form
+      var boat_form = '.boat-container.'+active_boat+' form'
+      $(boat_form).delay(1000).submit()
+    }
   }
-
-})
-
-
-// when the coordinates are ready, submit the form
-
-$('form.new_boat').on('submit', function(){
-
-
-
 })
 
 })
