@@ -26,17 +26,34 @@
 
 <section class="boat-dock">
 
-<% @boats.each do | boat | %>
-  <div><h3><%= boat.name %></h3></div>
+<% if flash[:notice] %>
+  <div class="notice"><%= flash[:notice] %></div>
+<% end %>
 
-  <%= simple_form_for boat do |f| %>
-    <%= f.error_notification %>
-    <%= f.text_field :board_id %>
-    <%= f.text_field :bow_index %>
-    <%= f.text_field :stern_index %>
-    <%= f.button :submit, "boat_me" %>
+<% if flash[:alert] %>
+  <div class="notice"><%= flash[:alert] %></div>
+<% end %>
+
+
+<% @boats.each do | b | %>
+  <div><h3><%= b.name %></h3></div>
+
+  <% unless b.id %>
+    <%= form_for b, url: {controller: :boats, method: "post", action: "create"} do |f| %>
+
+      <%= f.hidden_field :name, value: b.name %>
+      <%= f.hidden_field :length, value: b.length %>
+      <%= f.hidden_field :board_id, value: params[:id] %>
+      <%= f.text_field :bow_index %>
+      <%= f.text_field :stern_index %>
+      <%= f.button :submit %>
+    <% end %>
+
+  <% else %>
+
+  placed!
+
   <% end %>
-
  
 
 <% end %>

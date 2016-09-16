@@ -4,18 +4,27 @@ class Board < ActiveRecord::Base
   has_many :shots
   has_many :boats
 
-  
-
   def get_or_init_fleet
+    
+    @fleet = []
 
-    if !@fleet
-      @fleet = Array.new
-      fleet << Boat.new(:name => 'carrier', :length => 5)
-      fleet << Boat.new(:name => 'battleship', :length => 4)
-      fleet << Boat.new(:name => 'cruiser', :length => 2)
-      fleet << Boat.new(:name => 'submarine', :length => 3)
-      fleet << Boat.new(:name => 'destroyer', :length => 3)
+    for name, size in fleet_stats
+      boat = Boat.find_by board_id: self.id, name: name
 
-    @fleet 
+      if not boat
+        @fleet << Boat.new( board_id: self.id, name: name, length: size )
+      else
+        @fleet << boat
+      end
+
+    end
+    @fleet
   end
-end
+
+
+  private 
+  def fleet_stats
+    names = %w(carrier battleship destroyer submarine cruiser)
+    names.zip([5,4,3,3,2]).to_h
+  end
+end 
