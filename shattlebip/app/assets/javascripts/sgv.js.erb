@@ -8,11 +8,11 @@ var index_to_alphanum = function(cell_index){
 
 var my_turn = true;
 
+
 $(document).ready(function(){
+  $('button#fire').hide();
 
 $('.cell').on('click', function(){
-
-  console.log('click!')
 
   //if ($('.target-view .grid').hasClass('my-turn')) {
   if (my_turn == true){
@@ -24,20 +24,28 @@ $('.cell').on('click', function(){
     var cell_name = index_to_alphanum(cell_index)
 
     // confirm that you want to hit that cell
-    $('.info-station .messages').html(
+    $('.info-station .messages-content').html(
       '<h3>CONFIRM TARGET: ' + cell_name + '?</h3>'
-      + '<div class="fire-button">'
-      + '<button id="fire"><h3>FIRE!</h3></button>'
-      + '</div>'
       )
     //make a confirmation/fire element visible or clickable
-    //$('#fire').show()
+    $('button#fire').show()
 
     //take off my turn
     my_turn = false
   }
 })
 
+$('#fire').on('click', function(){
+  console.log('click!')
+  var target = $('.cell.targeted').attr('id').split('_')[1]
 
+  console.log('shot target =', target)
+  var url = '' //figure this out
+  // $.ajax({
+  //   type: "POST",
+  //   url: url,
+  //   data: target
+  //   })
+})
 
 });
