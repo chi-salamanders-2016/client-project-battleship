@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-	
+
 	def new
 		@user = User.new
 	end
@@ -12,13 +12,13 @@ class UsersController < ApplicationController
 		@user = User.new(user_params)
 		if @user.save
 			session[:user_id] = @user.id
-			redirect_to @user, notice: "user was saved"
+			redirect_to root_path, notice: "user was saved"
 		else
 			render :new
 		end
 	end
 
-	private 
+	private
 	def user_params
 		params.require(:user).permit(:username, :email, :password)
 	end
