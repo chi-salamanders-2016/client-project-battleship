@@ -1,13 +1,19 @@
 User.create(username: "User1", email: "User1@gmail.com", password: "password1234")
 User.create(username: "User2", email: "User2@gmail.com", password: "password1234")
 
-10.times do
+6.times do
   Game.create(name: "Test Game")
 end
 
 
 Board.create(user_id: 1, game_id: 1)
 Board.create(user_id: 2, game_id: 1)
+Board.create(user_id: 1, game_id: 2)
+Board.create(user_id: 2, game_id: 2)
+Board.create(user_id: 1, game_id: 3)
+Board.create(user_id: 2, game_id: 4)
+Board.create(user_id: 1, game_id: 5)
+Board.create(user_id: 2, game_id: 6)
 
 Boat.create(name: "Carrier", length: 5, bow_index: 64, stern_index: 69, board_id: 1)
 Boat.create(name: "Battleship", length: 4, bow_index: 54, stern_index: 58, board_id: 1)

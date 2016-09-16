@@ -15,35 +15,72 @@ class GamesController < ApplicationController
   end
 
   def index
-    @initiated_games = initiated_games
-    @joinable_games = joinable_games
-    @games_in_progress = games_in_progress
+    @board = Board.new
+    @my_waiting_games = one_player_games - games_not_init_by_me
+    @my_joinable_games = one_player_games - games_init_by_me
+
+    # @my_games_in_progress = two_player_games
+    # binding.pry
   end
 
   private
-    def all_games_awaiting_opponent
+    def one_player_games
       games = Game.all
-      games.map { |game| game.boards.length == 1 }
+      games = games.select { |game| game.boards.length == 1 }
       games
     end
 
-    def initiated_games
-      all_games_awaiting_opponent.map { |game| game.boards.select { |board| board.user_id == session[:user_id] } }
-    end
-
-    def joinable_games
-      all_games_awaiting_opponent.map { |game| game.boards.select { |board| board.user_id != session[:user_id] } }
-    end
-
-    def all_in_progress_games
+    def two_player_games
       games = Game.all
-      games.map { |game| game.boards.length == 2 }
+      games = games.select { |game| game.boards.length == 2 }
       games
     end
 
-    def games_in_progress
-      all_in_progress_games.map { |game| game.boards.where(:user_id == session[:user_id]) }
+    # def not_my_two_player_games
+      
+    # end
+
+    def boards_init_by_me
+      boards = Board.all
+      boards.select { |board| board.user_id == session[:user_id] }
     end
+
+    def games_init_by_me
+      boards_init_by_me.map { |board| board.game }
+    end
+
+    def boards_not_init_by_me
+      boards = Board.all
+      boards.select { |board| board.user_id != session[:user_id] }
+    end
+
+    def games_not_init_by_me
+      boards_not_init_by_me.map { |board| board.game }
+    end
+
+
+    # def initiated_game_boards
+    #   # all_games = all_games_awaiting_opponent
+    #   # all_boards = all_games.map { |game| game.boards }
+    #   # all_boards.select { |board| board.user_id == session[:user_id] } 
+    #   single_boards = Board.select(:game_id).distinct
+    #   user_boards = Board.where(user_id: session[:user_id])
+
+    # end
+
+    # def joinable_games
+    #   all_games_awaiting_opponent.map { |game| game.boards.select { |board| board.user_id != session[:user_id] } }
+    # end
+
+    # def all_in_progress_games
+    #   games = Game.all
+    #   games.map { |game| game.boards.length == 2 }
+    #   games
+    # end
+
+    # def games_in_progress
+    #   all_in_progress_games.map { |game| game.boards.where(:user_id == session[:user_id]) }
+    # end
 
     def game_params
       params.require(:game).permit(:name)

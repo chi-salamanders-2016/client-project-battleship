@@ -1,27 +1,35 @@
-index.html.erb
 
-<% if @joinable_games %>
+<% if @my_joinable_games %>
   <h2>Here are all the games you can join!</h2>
     <ul>
-  	  <% @joinable_games.each do |game| %>
-  	    <li><%= game.name %></li>
+  	  <% @my_joinable_games.each do |game| %>
+  	    <li>
+  	      <%= game.name %>
+  	      <%= form_for @board do |f| %>
+  	        <%= f.hidden_field :game_id, value: game.id %>  
+  	        <%= f.hidden_field :user_id, value: session[:user_id] %>
+  	        <%= f.submit "Join game" %>
+  	      <% end %>
+  	  </li>
   	  <% end %>
     </ul>
 <% end %>
 
-<% if @initiated_games %>
+<% if @my_waiting_games %>
   <h2>Here are all the games you are waiting for people to join!</h2>
     <ul>
-  	  <% @initiated_games.each do |game| %>
-  	    <li><%= game.name %></li>
+  	  <% @my_waiting_games.each do |game| %>
+  	    <li>
+  	      <%= game.name %>
+  	    </li>
   	  <% end %>
     </ul>
 <% end %>
 
-<% if @games_in_progress %>
+<% if @my_games_in_progress %>
   <h2>Here are all the games you are waiting for people to join!</h2>
     <ul>
-  	  <% @games_in_progress.each do |game| %>
+  	  <% @my_games_in_progress.each do |game| %>
   	    <li><%= game.name %></li>
   	  <% end %>
     </ul>
