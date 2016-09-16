@@ -1,5 +1,6 @@
 $cell-side: 40px;
 $cell-margin: 2px;
+$target-side: 25px;
 
 $grid-side: $cell-side * 11 + $cell-margin * 20;
 
@@ -14,6 +15,23 @@ $carrier: gold;
   float: left;
   width: 50%;
   border-right: 2px solid gray;
+
+  .cell {
+    width: $cell-side;
+    height: $cell-side;
+  }
+}
+
+.target-view {
+  float: left;
+  width: 45%;
+  .cell {
+    width: $target-side;
+    height: $target-side;
+  }
+  .cell.targeted {
+    background: red;
+  }
 }
 
 .boat-dock {
@@ -44,7 +62,7 @@ $carrier: gold;
 
 .grid {
   width: $grid-side;
-  height: $grid-side; 
+  height: $grid-side;
   padding: 10px;
   margin: 20px;
   border: 2px solid lightgray;
@@ -56,10 +74,9 @@ $carrier: gold;
   .cell {
     display: inline-block;
     float: left;
-    height: $cell-side;
-    width: $cell-side;
+
     margin: $cell-margin;
-    border: 2px solid gray; 
+    border: 2px solid gray;
     }
 }
 
@@ -139,4 +156,22 @@ $carrier: gold;
 .cell.eligible.carrier {
   background: aliceblue;
   border: 2px solid $carrier;
+}
+
+.info-station {
+  display: inline-block;
+
+  .messages {
+    text-align: center;
+    height: 100px;
+    width: 300px;
+    border: 2px solid gray;
+    padding: 5px;
+    margin: 5px;
+  }
+
+  .gamestate {
+
+  }
+
 }
