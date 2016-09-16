@@ -1,5 +1,9 @@
 User.create(username: "User1", email: "User1@gmail.com", password: "password1234")
 User.create(username: "User2", email: "User2@gmail.com", password: "password1234")
+User.create(username: "User3", email: "User3@gmail.com", password: "password1234")
+User.create(username: "User4", email: "User4@gmail.com", password: "password1234")
+User.create(username: "User5", email: "User5@gmail.com", password: "password1234")
+User.create(username: "User5", email: "User6@gmail.com", password: "password1234")
 
 Game.create(name: "Test Game")
 
@@ -17,6 +21,10 @@ Boat.create(name: "Battleship", length: 4, bow_index: 54, stern_index: 58, board
 Boat.create(name: "Cruiser", length: 3, bow_index: 34, stern_index: 37, board_id: 2)
 Boat.create(name: "Submarine", length: 3, bow_index: 24, stern_index: 27, board_id: 2)
 Boat.create(name: "Destroyer", length: 2, bow_index: 14, stern_index: 16, board_id: 2)
+
+100.times do
+	Shot.create(board_id: rand(1..2), target_index:rand(1..99))
+end
 
 
 
