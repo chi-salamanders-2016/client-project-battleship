@@ -1,7 +1,16 @@
 <h2>Create a new game!</h2>
 
 <%= form_for @game do |f| %>
-
+  <% if @game.errors.any? %>
+    <div id="errors">
+      <h2><%= pluralize(@game.errors.count, "error") %> prevented this game from saving.</h2>
+      <ul>
+        <% @game.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
   <p>
     <%= f.label :name %><br>
     <%= f.text_field :name %>

@@ -3,6 +3,8 @@ class Game < ActiveRecord::Base
   has_many :users, through: :boards
   has_many :shots, through: :boards
 
+
+  validates :name, presence: true
   #VALIDATIONS FOR ONLY 2 GAMES
 
   def total_shots_for_game(user)
