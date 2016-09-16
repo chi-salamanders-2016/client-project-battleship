@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
 
   resources :games do 
-    resources :boards, only: [:new, :create, :edit]
+    resources :boards, only: [:new, :create, :edit] do
+      resources :shots, only: [:create]
+    end
   end
   resources :users, only: [:new, :create, :show]
   resources :sessions, only: [:new, :create, :destroy]
