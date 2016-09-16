@@ -1,0 +1,24 @@
+<section class="ocean-view">
+
+<div class="grid">
+
+<% 0.upto 9 do |row| %>
+
+<div class="row r_<%= row %>" >
+
+    <% 0.upto 9 do |column| %>
+
+        <div class="col c_<%= column %>" >
+          <div class="<%= cell_class(row, column) %>" id="cell_<%= row %><%= column %>">
+
+          </div>
+        </div>
+    <% end %>
+
+</div>
+
+<% end %>
+
+</div>
+
+</section>
