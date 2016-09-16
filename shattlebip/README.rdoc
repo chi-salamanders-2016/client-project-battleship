@@ -1,3 +1,17 @@
+messages to add
+
+  CLICK A CELL TO TARGET
+
+ CONFIRM: D7?
+
+  FIRING
+
+  RESULT: MISS
+
+  RESULT: HIT!
+
+  WAITING FOR OPPONENT
+
 # ShattleBip Project
 
 * Paul
