@@ -21,7 +21,11 @@ class User < ActiveRecord::Base
   	total = self.games.count
     wins = games_won
     ratio = (wins.to_f / total.to_f) * 100
-  	return ratio.round(2)	#returns a decimal of win loss ratio
+    if ratio.nan?
+      return 0
+    else
+      return ratio.round(2)	
+    end#returns a decimal of win loss ratio
   end
 
   def total_shots_fired
