@@ -1,0 +1,43 @@
+var index_to_alphanum = function(cell_index){
+  coords = cell_index.split('')
+  // row is a lettter column is a number
+  column = coords[1];
+  row = String.fromCharCode(65 + Number(coords[0]));
+  return row+column
+}
+
+var my_turn = true;
+
+$(document).ready(function(){
+
+$('.cell').on('click', function(){
+
+  console.log('click!')
+
+  //if ($('.target-view .grid').hasClass('my-turn')) {
+  if (my_turn == true){
+    // highlight the cell you picked
+    $(this).addClass('targeted')
+
+    // get the cell name that you picked
+    var cell_index = $(this).attr('id').split('_')[1]
+    var cell_name = index_to_alphanum(cell_index)
+
+    // confirm that you want to hit that cell
+    $('.info-station .messages').html(
+      '<h3>CONFIRM TARGET: ' + cell_name + '?</h3>'
+      + '<div class="fire-button">'
+      + '<button id="fire"><h3>FIRE!</h3></button>'
+      + '</div>'
+      )
+    //make a confirmation/fire element visible or clickable
+    //$('#fire').show()
+
+    //take off my turn
+    my_turn = false
+  }
+})
+
+
+
+});
